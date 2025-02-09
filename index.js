@@ -21,11 +21,6 @@ app.set("views", path.resolve("./views"));
 
 app.use(cookieParser());
 
-app.use("/url", restrictToLoggedInUserOnly, urlRoute);
-app.use("/", checkAuth, staticRouter);
-app.use('/user', userRoute);
-
-
 app.get("/url/:shortid", async (req, res) => {
     const shortid = req.params.shortid;
     const entry = await URL.findOneAndUpdate(
@@ -45,6 +40,13 @@ app.get("/url/:shortid", async (req, res) => {
 
     res.redirect(entry.redirectUrl);
 });
+
+app.use("/url", restrictToLoggedInUserOnly, urlRoute);
+app.use("/", checkAuth, staticRouter);
+app.use('/user', userRoute);
+
+
+
 
 
 
