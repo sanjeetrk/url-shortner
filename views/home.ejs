@@ -6,221 +6,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URL Shortener</title>
-    <style>
-        /* Global Styles */
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background-color: #f3f4f6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 1.5rem;
-    font-family: 'Poppins', sans-serif;
-
-}
-
-/* Main Container */
-.container {
-    background-color: #ffffff;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    width: 800px;
-    padding: 10px;
-    transition: transform 0.3s ease-in-out;
-}
-
-
-/* Title */
-h1 {
-    font-size: 26px;
-    font-weight: bold;
-    text-align: center;
-    color: #2563eb;
-    margin-bottom: 20px;
-}
-
-/* Buttons */
-button {
-    background-color: #ef4444;
-    color: white;
-    font-weight: bold;
-    padding: 10px 16px;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
-    width: 100%;
-    display: block;
-    text-align: center;
-}
-
-.logout-button{
-    background-color: #ef4444;
-    color: white;
-    font-weight: bold;
-    padding: 10px 16px;
-    margin-bottom: 1rem;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
-    width: 5rem;
-    display: block;
-    /* text-align: center; */
-    float: right;
-
-
-}
-button:hover {
-    background-color: #dc2626;
-    transform: scale(1.05);
-}
-
-/* Form Elements */
-input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    outline: none;
-    margin-bottom: 1rem;
-    transition: border 0.2s ease-in-out;
-    font-size: 16px;
-}
-input[type="text"]:focus {
-    border: 2px solid #3b82f6;
-    box-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
-}
-
-/* Table Styles */
-table {
-    width: 100%;
-    background-color: white;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    border-collapse: collapse;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-table th, table td {
-    padding: 12px;
-    border-bottom: 1px solid #e5e7eb;
-    text-align: left;
-    word-break: break-word;
-}
-
-table th {
-    background-color: #f3f4f6;
-    font-weight: 600;
-}
-
-table tr:hover {
-    background-color: #f9fafb;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    body{
-        display: block;
-        padding: 1rem;
-        margin-top: 2rem;
-    }
-
-    .container {
-        width: 100%;
-        padding: 1rem;
-    }
-    h1 {
-        font-size: 22px;
-    }
-    button {
-        font-size: 14px;
-    }
-    table th, table td {
-        padding: 8px;
-        font-size: 14px;
-    }
-}
-
-    </style>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
 
-    <div class="container">
-        <h1 class="title">URL Shortener</h1>
+
+
+<body class="bg-gray-100 flex justify-center items-center min-h-screen p-3">
+
+
+
+
+    <div class="bg-white shadow-lg rounded-xl max-w-4xl w-full p-6">
+        <h1 class="text-3xl font-bold text-center text-blue-600 mb-6">URL Shortener</h1>
 
         <!-- Logout Button -->
-        <form action="/user/logout" method="POST" class="logout-form">
-            <button className="logout-button" type="submit" class="logout-button">Logout</button>
+        <form action="/user/logout" method="POST" class="text-right mb-4">
+            <button type="submit" class="bg-red-500 text-white font-bold py-2 px-4 rounded-lg shadow-lg hover:bg-red-600 transition-all duration-300 ease-in-out transform hover:scale-105">
+                Logout
+            </button>
         </form>
+        
 
         <!-- Display generated URL -->
         <% if (locals.id) { %>
-            <div class="generated-url">
-                <p>URL generated:
-                    <a href="http://<%= locals.host %>/url/<%= id %>" target="_blank" class="short-url">
+            <div class="bg-green-100 text-green-800 p-4 rounded-lg mb-4">
+                <p class="text-center">URL generated:
+                    <a href="http://<%= locals.host %>/url/<%= id %>" target="_blank"
+                        class="text-blue-500 font-medium hover:underline break-all">
                         http://<%= locals.host %>/url/<%= id %>
                     </a>
                 </p>
             </div>
-        <% } %>
+            <% } %>
 
-        <!-- Form to generate new URL -->
-        <form action="/url" method="post" class="url-form">
-            <label for="url">Enter your original URL</label>
-            <input type="text" name="url" required id="url" placeholder="https://example.com">
-            <button type="submit">Generate Short URL</button>
-        </form>
+                <!-- Form to generate new URL -->
+                <form action="/url" method="post" class="bg-gray-50 p-4 rounded-lg shadow">
+                    <label for="url" class="block font-medium text-gray-700 mb-2">Enter your original URL</label>
+                    <input type="text" name="url" required id="url"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                        placeholder="https://example.com">
+                    <button type="submit"
+                        class="w-full bg-blue-500 text-white font-medium py-2 mt-4 rounded-lg hover:bg-blue-600 transition">
+                        Generate Short URL
+                    </button>
+                </form>
 
-        <!-- Display list of all generated URLs -->
-        <% if (locals.urls && locals.urls.length > 0) { %>
-            <h2 class="sub-title">Your Shortened URLs</h2>
-            <div class="table-wrapper">
-                <table class="url-table">
-                    <thead>
-                        <tr>
-                            <th>S. No</th>
-                            <th>Original URL</th>
-                            <th>Short URL</th>
-                            <th>Clicks</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% urls.forEach((url, index)=> { %>
-                            <tr>
-                                <td><%= index + 1 %></td>
-                                <td>
-                                    <a href="<%= url.redirectUrl %>" target="_blank" class="original-url">
-                                        <%= url.redirectUrl %>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="http://<%= locals.host %>/url/<%= url.shortid %>" target="_blank" class="short-url">
-                                        http://<%= locals.host %>/url/<%= url.shortid %>
-                                    </a>
-                                </td>
-                                <td class="click-count"><%= url.visitHistory.length %></td>
-                                <td>
-                                    <form action="/url/<%= url.shortid %>" method="POST">
-                                        <input type="hidden" name="action" value="delete">
-                                        <button type="submit" class="delete-button">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        <% }) %>
-                    </tbody>
-                </table>
-            </div>
-        <% } %>
+                <!-- Display list of all generated URLs -->
+                <% if (locals.urls && locals.urls.length> 0) { %>
+                    <h2 class="text-xl font-semibold text-gray-700 mt-6 mb-4 text-center">Your Shortened URLs</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full bg-white shadow-md rounded-lg border border-gray-200">
+                            <thead class="bg-gray-100">
+                                <tr class="text-left">
+                                    <th class="p-4 border-b">S. No</th>
+                                    <th class="p-4 border-b">Original URL</th>
+                                    <th class="p-4 border-b">Short URL</th>
+                                    <th class="p-4 border-b">Clicks</th>
+                                    <th class="p-4 border-b">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% urls.forEach((url, index)=> { %>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="p-4 border-b text-center">
+                                            <%= index + 1 %>
+                                        </td>
+                                        <td class="p-4 border-b break-words">
+                                            <a href="<%= url.redirectUrl %>" target="_blank"
+                                                class="text-blue-600 font-medium hover:underline break-all">
+                                                <%= url.redirectUrl %>
+                                            </a>
+                                        </td>
+                                        <td class="p-4 border-b break-words">
+                                            <a href="http://<%= locals.host %>/url/<%= url.shortid %>" target="_blank"
+                                                class="text-blue-500 font-medium hover:underline break-all">
+                                                http://<%= locals.host %>/url/<%= url.shortid %>
+                                            </a>
+                                        </td>
+                                        <td class="p-4 border-b text-center font-semibold text-gray-700">
+                                            <%= url.visitHistory.length %>
+                                        </td>
+                                        <td class="p-4 border-b text-center">
+                                            <form action="/url/<%= url.shortid %>" method="POST">
+                                                <input type="hidden" name="action" value="delete">
+                                                <button type="submit"
+                                                    class="text-red-500 font-medium hover:underline">Delete</button>
+                                            </form>
+
+
+
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <% } %>
     </div>
 
 </body>

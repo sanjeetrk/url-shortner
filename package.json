@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "build:css": " npx tailwindcss build  -i src/styles.css -o public/styles.css"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "autoprefixer": "^10.4.20",
     "cookie-parser": "^1.4.7",
     "cookies-parser": "^1.2.0",
     "dotenv": "^16.4.7",
@@ -22,5 +22,9 @@
     "nanoid": "^5.0.9",
     "shortid": "^2.2.17",
     "uuid": "^11.0.5"
+  },
+  "devDependencies": {
+    "tailwind": "^3.1.0",
+    "tailwindcss": "^4.0.6"
   }
 }

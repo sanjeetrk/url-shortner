@@ -7,6 +7,7 @@ const staticRouter = require("./routes/staticRouter");
 const userRoute = require('./routes/user');
 const cookieParser = require("cookie-parser");
 const { restrictToLoggedInUserOnly, checkAuth } = require('./middlewares/auth');
+// const path = require('path');
 
 
 require("./connect");
@@ -18,8 +19,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
+app.use(express.static(path.join(__dirname, 'public')))
+
 
 app.use(cookieParser());
+;
 
 app.get("/url/:shortid", async (req, res) => {
     const shortid = req.params.shortid;

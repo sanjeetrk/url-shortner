@@ -5,161 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
-<style>
-    *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box ;
-    }
-    /* Global Styles */
-body {
-    background-color: #f3f4f6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 16px;
-    font-family: 'Poppins', sans-serif;
-}
-
-/* Signup Container */
-.signup-container {
-    background-color: #ffffff;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    max-width: 90%;
-    width: 400px;
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.3s ease-in-out;
-}
-.signup-container:hover {
-    transform: scale(1.02);
-}
-
-/* Title */
-.title {
-    font-size: 26px;
-    font-weight: bold;
-    color: #2563eb;
-    margin-bottom: 20px;
-}
-
-/* Input Fields */
-.input-group {
-    text-align: left;
-    margin-bottom: 16px;
-}
-
-.input-group label {
-    display: block;
-    font-size: 14px;
-    font-weight: 500;
-    color: #374151;
-    margin-bottom: 6px;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    outline: none;
-    transition: border 0.2s ease-in-out;
-    font-size: 16px;
-}
-
-input:focus {
-    border: 2px solid #3b82f6;
-    box-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
-}
-
-/* Button */
-button {
-    background-color: #2563eb;
-    color: white;
-    font-weight: bold;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    width: 100%;
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
-    display: block;
-}
-
-button:hover {
-    background-color: #1e40af;
-    transform: scale(1.05);
-}
-
-/* Login Link */
-.login-link {
-    margin-top: 16px;
-    font-size: 14px;
-}
-
-.login-link a {
-    color: #2563eb;
-    font-weight: bold;
-    text-decoration: none;
-    transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
-}
-
-.login-link a:hover {
-    text-decoration: underline;
-    color: #1e40af;
-    transform: scale(1.05);
-}
-
-/* Responsive Design */
-@media (max-width: 500px) {
-    .signup-container {
-        width: 100%;
-        padding: 20px;
-    }
-
-    .title {
-        font-size: 22px;
-    }
-
-    button {
-        font-size: 14px;
-    }
-}
-
-</style>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen p-6">
 
-    <div className="signup-container">
-        <h1 className="title">Signup</h1>
+    <div class="bg-white shadow-lg rounded-xl p-8 max-w-sm w-full">
+        <h1 class="text-3xl font-bold text-center text-blue-600 mb-6">Signup</h1>
 
-        <form action="/user" method="POST" className="signup-form">
-            <div className="input-group">
-                <label for="name">Enter Your Full Name</label>
-                <input type="text" name="name" id="name" required autofocus>
+        <form action="/user" method="POST" class="space-y-4">
+            <div>
+                <label for="name" class="block text-gray-700 font-medium mb-2">Enter Your Full Name</label>
+                <input type="text" name="name" id="name" required autofocus
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
             </div>
 
-            <div className="input-group">
-                <label for="email">Enter Your Email</label>
-                <input type="email" name="email" id="email" required>
+            <div>
+                <label for="email" class="block text-gray-700 font-medium mb-2">Enter Your Email</label>
+                <input type="email" name="email" id="email" required
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
             </div>
 
-            <div className="input-group">
-                <label for="password">Enter Your Password</label>
-                <input type="password" name="password" id="password" required>
+            <div>
+                <label for="password" class="block text-gray-700 font-medium mb-2">Enter Your Password</label>
+                <input type="password" name="password" id="password" required
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
             </div>
 
-            <button type="submit">Signup</button>
+            <button type="submit"
+                class="w-full bg-blue-500 text-white font-medium py-2 rounded-lg hover:bg-blue-600 transition">
+                Signup
+            </button>
         </form>
-
-        <div className="login-link">
-            <p>Already have an account?
-                <a href="/login">Login</a>
+        <div class="mt-4 text-center">
+            <p class="text-gray-600 text-xl">Already have an account?
+                <a href="/login"
+                    class="text-blue-500 hover:text-blue-600 font-semibold underline transition duration-300 ease-in-out transform hover:scale-105">
+                    Login</a>
             </p>
         </div>
 
