@@ -12,7 +12,14 @@ async function handleUserSignup(req, res) {
     }
     const user = await User.create({ name, email, password });
     const token = setUser(user);
-    res.cookie("uid", token);
+    // res.cookie("uid", token);
+    // 4. Set the cookie (with MUCH better options)
+    res.cookie("uid", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        path: '/',
+    });
     return res.redirect("/");
 }
 
@@ -24,7 +31,14 @@ async function handleUserLogin(req, res) {
         return res.render("login", { error: "Invalid email or password" });
     }
     const token = setUser(user);
-    res.cookie("uid", token);
+    // res.cookie("uid", token);
+    // 4. Set the cookie (with MUCH better options)
+    res.cookie("uid", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        path: '/',
+    });
     return res.redirect("/");
 }
 
